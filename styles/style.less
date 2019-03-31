@@ -1,0 +1,92 @@
+html, body, .solar-system{
+  height: 100%;
+  width: 100%;
+  margin: unset;
+}
+
+.base{
+  border: 1px solid red;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+.solar-system{
+  position: relative;
+
+  .sun{
+    .base;
+    height: 20px;
+    width: 20px;
+    background:radial-gradient(ellipse at center, #ffd000 1%,#f9b700 39%,#f9b700 39%,#e06317 100%);
+
+  }
+
+  .mercury{
+    .base;
+    height: 40px;
+    width: 40px;
+
+    &:before{
+      height: 10px;
+      width: 10px;
+      background: green;
+    }
+  }
+
+  .venus{
+    .base;
+    height: 60px;
+    width: 60px;
+  }
+
+  .earth{
+    .base;
+    height: 80px;
+    width: 80px;
+  }
+
+  .mars{
+    .base;
+    height: 100px;
+    width: 100px;
+  }
+
+  .asteroids-belt{
+    .base;
+    height: 120px;
+    width: 120px;
+  }
+
+  .jupiter{
+    .base;
+    height: 140px;
+    width: 140px;
+  }
+
+  .saturn{
+    .base;
+    height: 160px;
+    width: 160px;
+  }
+
+  .uranus{
+    .base;
+    height: 180px;
+    width: 180px;
+  }
+
+  .neptune{
+    .base;
+    height: 200px;
+    width: 200px;
+  }
+
+  .pluto{
+    .base;
+    height: 220px;
+    width: 220px;
+  }
+}
