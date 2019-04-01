@@ -1,92 +1,165 @@
+@import "./other";
+
 html, body, .solar-system{
   height: 100%;
   width: 100%;
   margin: unset;
 }
 
+@sun: 40px;
+@mercury-orb : 70px; @mercury-pl: 4px;
+@venus-orb : 100px; @venus-pl: 8px;
+@earth-orb : 145px; @earth-pl: 6px;
+@mars-orb : 190px; @mars-pl: 6px;
+@jupiter-orb : 340px; @jupiter-pl: 18px;
+@saturn-orb : 440px; @saturn-pl: 12px;
+@uranus-orb : 520px; @uranus-pl: 10px;
+@neptune-orb : 630px; @neptune-pl: 10px;
+@pluto-orb : 780px; @pluto-pl: 3px;
+@asteroids-belt-orb : 300px; @asteroids-belt-pl: 210px;
+
 .base{
   border: 1px solid red;
   border-radius: 50%;
   position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-animation: rotating 10s linear infinite;
+  -moz-animation: rotating 10s linear infinite;
+  -ms-animation: rotating 10s linear infinite;
+  -o-animation: rotating 10s linear infinite;
+  animation: rotating 10s linear infinite;
+}
+
+.base-before(@planet-size){
+  height: @planet-size;
+  width: @planet-size;
+  content: "";
+  border-radius: 50%;
+  display: inline-block;
+  background: blue;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -@planet-size / 2;
+  margin: auto;
 }
 
 .solar-system{
   position: relative;
+  overflow: hidden;
 
   .sun{
     .base;
-    height: 20px;
-    width: 20px;
+    height: @sun;
+    width: @sun;
     background:radial-gradient(ellipse at center, #ffd000 1%,#f9b700 39%,#f9b700 39%,#e06317 100%);
 
   }
 
   .mercury{
     .base;
-    height: 40px;
-    width: 40px;
+    height: @mercury-orb;
+    width: @mercury-orb;
 
-    &:before{
-      height: 10px;
-      width: 10px;
-      background: green;
+    &::before{
+      .base-before(@mercury-pl)
     }
   }
 
   .venus{
     .base;
-    height: 60px;
-    width: 60px;
+    height: @venus-orb;
+    width: @venus-orb;
+
+    &::before{
+      .base-before(@venus-pl);
+    }
   }
 
   .earth{
     .base;
-    height: 80px;
-    width: 80px;
+    height: @earth-orb;
+    width: @earth-orb;
+
+    &::before{
+      .base-before(@earth-pl)
+    }
   }
 
   .mars{
     .base;
-    height: 100px;
-    width: 100px;
+    height: @mars-orb;
+    width: @mars-orb;
+
+    &::before{
+      .base-before(@mars-pl);
+    }
   }
 
   .asteroids-belt{
     .base;
-    height: 120px;
-    width: 120px;
+    height: @asteroids-belt-orb;
+    width: @asteroids-belt-orb;
+
+    background: url(http://neography.com/experiment/circles/solarsystem/asteroids_meteorids.png) no-repeat 0 0;;
+
+    //&::before{
+    //  .base-before(@asteroids-belt-pl)
+    //}
   }
 
   .jupiter{
     .base;
-    height: 140px;
-    width: 140px;
+    height: @jupiter-orb;
+    width: @jupiter-orb;
+
+    &::before{
+      .base-before(@jupiter-pl)
+    }
   }
 
   .saturn{
     .base;
-    height: 160px;
-    width: 160px;
+    height: @saturn-orb;
+    width: @saturn-orb;
+
+    &::before {
+      .base-before(@saturn-pl)
+    }
   }
 
   .uranus{
     .base;
-    height: 180px;
-    width: 180px;
+    height: @uranus-orb;
+    width: @uranus-orb;
+
+    &::before {
+      .base-before(@uranus-pl)
+    }
   }
 
   .neptune{
     .base;
-    height: 200px;
-    width: 200px;
+    height: @neptune-orb;
+    width: @neptune-orb;
+
+    &::before {
+      .base-before(@neptune-pl)
+    }
   }
 
   .pluto{
     .base;
-    height: 220px;
-    width: 220px;
+    height: @pluto-orb;
+    width: @pluto-orb;
+
+    &::before {
+      .base-before(@pluto-pl);
+    }
   }
+
 }
