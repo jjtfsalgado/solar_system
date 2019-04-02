@@ -1,3 +1,20 @@
+
+
+@seconds-per-day:0.01;
+
+@sun: 40px;
+@mercury-orb : 70px; @mercury-pl: 4px;
+@venus-orb : 100px; @venus-pl: 8px;
+@earth-orb : 145px; @earth-pl: 6px;
+@mars-orb : 190px; @mars-pl: 6px;
+@jupiter-orb : 340px; @jupiter-pl: 18px;
+@saturn-orb : 440px; @saturn-pl: 12px;
+@uranus-orb : 520px; @uranus-pl: 10px;
+@neptune-orb : 630px; @neptune-pl: 10px;
+@pluto-orb : 780px; @pluto-pl: 3px;
+@asteroids-belt: 270px;
+
+
 @-webkit-keyframes rotating /* Safari and Chrome */ {
     from {
         -webkit-transform: rotate(0deg);
@@ -26,10 +43,11 @@
         transform: rotate(360deg);
     }
 }
-.rotating {
-    -webkit-animation: rotating 2s linear infinite;
-    -moz-animation: rotating 2s linear infinite;
-    -ms-animation: rotating 2s linear infinite;
-    -o-animation: rotating 2s linear infinite;
-    animation: rotating 2s linear infinite;
+
+.rotating(@seconds) {
+    -webkit-animation: rotating unit(@seconds,s) linear infinite;
+    -moz-animation: rotating unit(@seconds,s) linear infinite;
+    -ms-animation: rotating unit(@seconds,s) linear infinite;
+    -o-animation: rotating unit(@seconds,s) linear infinite;
+    animation: rotating unit(@seconds,s) linear infinite;
 }

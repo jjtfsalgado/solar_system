@@ -1,4 +1,4 @@
-@import "./other";
+
 
 html, body, .solar-system{
   height: 100%;
@@ -6,32 +6,17 @@ html, body, .solar-system{
   margin: unset;
 }
 
-@sun: 40px;
-@mercury-orb : 70px; @mercury-pl: 4px;
-@venus-orb : 100px; @venus-pl: 8px;
-@earth-orb : 145px; @earth-pl: 6px;
-@mars-orb : 190px; @mars-pl: 6px;
-@jupiter-orb : 340px; @jupiter-pl: 18px;
-@saturn-orb : 440px; @saturn-pl: 12px;
-@uranus-orb : 520px; @uranus-pl: 10px;
-@neptune-orb : 630px; @neptune-pl: 10px;
-@pluto-orb : 780px; @pluto-pl: 3px;
-@asteroids-belt-orb : 300px; @asteroids-belt-pl: 210px;
-
-.base{
+.base(@seconds, @orb){
   border: 1px solid red;
   border-radius: 50%;
+  top: 50%;
+  left: 50%;
   position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  -webkit-animation: rotating 10s linear infinite;
-  -moz-animation: rotating 10s linear infinite;
-  -ms-animation: rotating 10s linear infinite;
-  -o-animation: rotating 10s linear infinite;
-  animation: rotating 10s linear infinite;
+  height: @orb;
+  width: @orb;
+  margin-top: unit(-@orb/2, px);
+  margin-left: unit(-@orb/2, px);
+  .rotating(@seconds);
 }
 
 .base-before(@planet-size){
@@ -46,6 +31,7 @@ html, body, .solar-system{
   right: 0;
   top: -@planet-size / 2;
   margin: auto;
+
 }
 
 .solar-system{
@@ -53,27 +39,19 @@ html, body, .solar-system{
   overflow: hidden;
 
   .sun{
-    .base;
-    height: @sun;
-    width: @sun;
+    .base(100, @sun);
     background:radial-gradient(ellipse at center, #ffd000 1%,#f9b700 39%,#f9b700 39%,#e06317 100%);
-
   }
 
   .mercury{
-    .base;
-    height: @mercury-orb;
-    width: @mercury-orb;
-
+    .base(@seconds-per-day * 87.5, @mercury-orb);
     &::before{
       .base-before(@mercury-pl)
     }
   }
 
   .venus{
-    .base;
-    height: @venus-orb;
-    width: @venus-orb;
+    .base(@seconds-per-day * 224.7, @venus-orb);
 
     &::before{
       .base-before(@venus-pl);
@@ -81,9 +59,7 @@ html, body, .solar-system{
   }
 
   .earth{
-    .base;
-    height: @earth-orb;
-    width: @earth-orb;
+    .base(@seconds-per-day * 365.2563, @earth-orb);
 
     &::before{
       .base-before(@earth-pl)
@@ -91,9 +67,7 @@ html, body, .solar-system{
   }
 
   .mars{
-    .base;
-    height: @mars-orb;
-    width: @mars-orb;
+    .base(@seconds-per-day * 687, @mars-orb);
 
     &::before{
       .base-before(@mars-pl);
@@ -101,31 +75,22 @@ html, body, .solar-system{
   }
 
   .asteroids-belt{
-    .base;
-    height: @asteroids-belt-orb;
-    width: @asteroids-belt-orb;
-    border-size:30px;
-    //background: url(http://neography.com/experiment/circles/solarsystem/asteroids_meteorids.png) no-repeat 0 0;;
-    border-image: url(http://neography.com/experiment/circles/solarsystem/asteroids_meteorids.png) 30;
-    //&::before{
-    //  .base-before(@asteroids-belt-pl)
-    //}
+    .base(@seconds-per-day * 4331, @asteroids-belt);
+    background-image: url(http://neography.com/experiment/circles/solarsystem/asteroids_meteorids.png);
+    background-size:@asteroids-belt @asteroids-belt;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   .jupiter{
-    .base;
-    height: @jupiter-orb;
-    width: @jupiter-orb;
-
+    .base(@seconds-per-day * 4331, @jupiter-orb);
     &::before{
       .base-before(@jupiter-pl)
     }
   }
 
   .saturn{
-    .base;
-    height: @saturn-orb;
-    width: @saturn-orb;
+    .base(@seconds-per-day * 10747, @saturn-orb);
 
     &::before {
       .base-before(@saturn-pl)
@@ -133,9 +98,7 @@ html, body, .solar-system{
   }
 
   .uranus{
-    .base;
-    height: @uranus-orb;
-    width: @uranus-orb;
+    .base(@seconds-per-day * 30589, @uranus-orb);
 
     &::before {
       .base-before(@uranus-pl)
@@ -143,9 +106,7 @@ html, body, .solar-system{
   }
 
   .neptune{
-    .base;
-    height: @neptune-orb;
-    width: @neptune-orb;
+    .base(@seconds-per-day * 59802, @neptune-orb);
 
     &::before {
       .base-before(@neptune-pl)
@@ -153,9 +114,7 @@ html, body, .solar-system{
   }
 
   .pluto{
-    .base;
-    height: @pluto-orb;
-    width: @pluto-orb;
+    .base(@seconds-per-day * 90580, @pluto-orb);
 
     &::before {
       .base-before(@pluto-pl);
