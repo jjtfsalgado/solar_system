@@ -2,17 +2,20 @@
 
 @seconds-per-day:0.01;
 
-@sun: 40px;
-@mercury-orb : 70px; @mercury-pl: 4px;
-@venus-orb : 100px; @venus-pl: 8px;
-@earth-orb : 145px; @earth-pl: 6px;
-@mars-orb : 190px; @mars-pl: 6px;
-@jupiter-orb : 340px; @jupiter-pl: 18px;
-@saturn-orb : 440px; @saturn-pl: 12px;
-@uranus-orb : 520px; @uranus-pl: 10px;
-@neptune-orb : 630px; @neptune-pl: 10px;
-@pluto-orb : 780px; @pluto-pl: 3px;
-@asteroids-belt: 270px;
+@startInt: 30;
+@start: unit(@startInt, px);
+
+@sun: @start;
+@mercury-orb-x : unit((70/40) * @start, px); @mercury-orb-y : unit((70/40) * @start, px);  @mercury-pl: 4px;
+@venus-orb-x : unit((100/40) * @start, px); @venus-orb-y : unit((100/40) * @start, px);  @venus-pl: 8px;
+@earth-orb-x : unit((145/40) * @start, px); @earth-orb-y : unit((145/40) * @start, px);  @earth-pl: 6px;
+@mars-orb-x :unit((190/40) * @start, px); @mars-orb-y: unit((190/40) * @start, px);  @mars-pl: 6px;
+@jupiter-orb-x :unit((340/40) * @start, px); @jupiter-orb-y: unit((340/40) * @start, px);  @jupiter-pl: 18px;
+@saturn-orb-x :unit((440/40) * @start, px); @saturn-orb-y: unit((440/40) * @start, px);  @saturn-pl: 12px;
+@uranus-orb-x :unit((640/40) * @start, px); @uranus-orb-y: unit((640/40) * @start, px);  @uranus-pl: 10px;
+@neptune-orb-x :unit((815/40) * @start, px); @neptune-orb-y: unit((815/40) * @start, px);  @neptune-pl: 10px;
+@pluto-orb-x :unit((900/40) * @start, px); @pluto-orb-y: unit((870/40) * @start, px);  @pluto-pl: 5px;
+@asteroids-belt-x: unit((270/40) * @start, px); @asteroids-belt-y: unit((260/40) * @start, px);
 
 
 @-webkit-keyframes rotating /* Safari and Chrome */ {

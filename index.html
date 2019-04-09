@@ -18,7 +18,28 @@
         <div class="uranus"></div>
         <div class="neptune"></div>
         <div class="pluto"></div>
+        <div class="stars"></div>
+        <div>
+            <input type="range" id="start" onchange="onChangeScale()" step="0.1" name="volume"
+                   min="0.5" max="2">
+            <label for="volume" >Scale</label>
+        </div>
+        <div>
+            <input type="number" id="speed" onchange="onChangeSpeed()" value="0.01" name="speed">
+            <label for="speed">Seconds per day</label>
+        </div>
     </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
+    <script>
+        function onChangeScale(ev) {
+            const value = document.getElementById("start").value;
+            less.modifyVars({'@startInt':value * 30});
+        }
+
+        function onChangeSpeed(ev) {
+            const value = document.getElementById("speed").value;
+            less.modifyVars({'@seconds-per-day':value});
+        }
+    </script>
 </body>
 </html>

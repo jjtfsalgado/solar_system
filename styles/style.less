@@ -6,118 +6,147 @@ html, body, .solar-system{
   margin: unset;
 }
 
-.base(@seconds, @orb){
-  border: 1px solid red;
+input{
+  width: 130px;
+}
+
+.base(@seconds, @orb-x, @orb-y, @x, @y){
+  border: 0.5px solid #a2a2a2;
   border-radius: 50%;
   top: 50%;
   left: 50%;
   position: absolute;
-  height: @orb;
-  width: @orb;
-  margin-top: unit(-@orb/2, px);
-  margin-left: unit(-@orb/2, px);
+  height: @orb-x;
+  width: @orb-y;
+  margin-top: unit(-@orb-x/2, px) * @x;
+  margin-left: unit(-@orb-y/2, px) * @y;
   .rotating(@seconds);
 }
 
-.base-before(@planet-size){
+.base-before(@planet-size, @color){
   height: @planet-size;
   width: @planet-size;
   content: "";
   border-radius: 50%;
   display: inline-block;
-  background: blue;
+  background: @color;
   position: absolute;
   left: 0;
   right: 0;
   top: -@planet-size / 2;
   margin: auto;
-
+  box-shadow: inset 0 6px 0 -2px rgba(0, 0, 0, 0.25);
 }
 
 .solar-system{
   position: relative;
   overflow: hidden;
+  background: radial-gradient(ellipse at bottom, #7b7b7b 0%, #717171 100%);
 
   .sun{
-    .base(100, @sun);
+    .base(100, @sun, @sun, 1, 1);
     background:radial-gradient(ellipse at center, #ffd000 1%,#f9b700 39%,#f9b700 39%,#e06317 100%);
+    border: unset;
   }
 
   .mercury{
-    .base(@seconds-per-day * 87.5, @mercury-orb);
+    .base(@seconds-per-day * 87.5, @mercury-orb-x, @mercury-orb-y, 1, 1);
     &::before{
-      .base-before(@mercury-pl)
+      .base-before(@mercury-pl, #9f5e26)
     }
   }
 
   .venus{
-    .base(@seconds-per-day * 224.7, @venus-orb);
+    .base(@seconds-per-day * 224.7, @venus-orb-x, @venus-orb-y,1,1);
 
     &::before{
-      .base-before(@venus-pl);
+      .base-before(@venus-pl, #BEB768);
     }
   }
 
   .earth{
-    .base(@seconds-per-day * 365.2563, @earth-orb);
+    .base(@seconds-per-day * 365.2563, @earth-orb-x, @earth-orb-y,1,1);
 
     &::before{
-      .base-before(@earth-pl)
+      .base-before(@earth-pl, #11abe9)
     }
   }
 
   .mars{
-    .base(@seconds-per-day * 687, @mars-orb);
+    .base(@seconds-per-day * 687, @mars-orb-x, @mars-orb-y,1,1);
 
     &::before{
-      .base-before(@mars-pl);
+      .base-before(@mars-pl, #cf3921);
     }
   }
 
   .asteroids-belt{
-    .base(@seconds-per-day * 4331, @asteroids-belt);
+    .base(@seconds-per-day * 4331, @asteroids-belt-x, @asteroids-belt-y, 1, 1);
     background-image: url(http://neography.com/experiment/circles/solarsystem/asteroids_meteorids.png);
-    background-size:@asteroids-belt @asteroids-belt;
+    background-size:@asteroids-belt-x @asteroids-belt-y;
     background-repeat: no-repeat;
     background-position: center;
+    border: unset;
   }
 
   .jupiter{
-    .base(@seconds-per-day * 4331, @jupiter-orb);
+    .base(@seconds-per-day * 4331, @jupiter-orb-x, @jupiter-orb-y,1,1);
     &::before{
-      .base-before(@jupiter-pl)
+      .base-before(@jupiter-pl, #c76e2a)
     }
   }
 
   .saturn{
-    .base(@seconds-per-day * 10747, @saturn-orb);
+    .base(@seconds-per-day * 10747, @saturn-orb-x, @saturn-orb-y,1,1);
 
     &::before {
-      .base-before(@saturn-pl)
+      .base-before(@saturn-pl,#E7C194)
+    }
+
+    &::after{
+      position: absolute;
+      content: "";
+      width: 12px;
+      height: 12px;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      border-radius: 8px;
+      border: 2px solid #5a4e34;
+      right: 0px;
+      top: -6px;
+      left: 0;
+      z-index: 1;
+      margin: auto;
+      -moz-transform: skewY(50deg);
+      -o-transform: skewY(50deg);
+      transform: skewY(50deg);
     }
   }
 
   .uranus{
-    .base(@seconds-per-day * 30589, @uranus-orb);
+    .base(@seconds-per-day * 30589, @uranus-orb-x, @uranus-orb-y,1,1);
 
     &::before {
-      .base-before(@uranus-pl)
+      .base-before(@uranus-pl, #b5e3e3)
     }
   }
 
   .neptune{
-    .base(@seconds-per-day * 59802, @neptune-orb);
+    .base(@seconds-per-day * 59802, @neptune-orb-x, @neptune-orb-y,1,1);
 
     &::before {
-      .base-before(@neptune-pl)
+      .base-before(@neptune-pl, #175e9e)
     }
   }
 
   .pluto{
-    .base(@seconds-per-day * 90580, @pluto-orb);
+    .base(@seconds-per-day * 90580, @pluto-orb-x, @pluto-orb-y,1.14,0.90);
+    //width: 740px;
+    //margin-top: -460px;
+    //margin-left: -300px;
 
     &::before {
-      .base-before(@pluto-pl);
+      .base-before(@pluto-pl, #fff);
     }
   }
 
